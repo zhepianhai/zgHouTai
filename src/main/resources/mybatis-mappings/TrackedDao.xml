@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zph.zg.dao.TrackedDao">
+    <resultMap id="trackedMap" type="com.zph.zg.model.Tracked">
+        <result column="persId" jdbcType="VARCHAR" property="persId" />
+        <result column="operateTime" jdbcType="VARCHAR" property="operateTime" />
+        <result column="persName" jdbcType="VARCHAR" property="persName" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="lon" jdbcType="DOUBLE" property="lon" />
+        <result column="lat" jdbcType="DOUBLE" property="lat" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="orgId" jdbcType="VARCHAR" property="orgId" />
+        <result column="groupId" jdbcType="VARCHAR" property="groupId" />
+        <result column="adCode" jdbcType="VARCHAR" property="adCode" />
+    </resultMap>
+    <sql id="table_columns">
+		persId,
+		operateTime,
+		persName,
+		mobile,
+		lon,
+		lat,
+		address,
+		orgId,
+		groupId,
+		adCode
+    </sql>
+
+
+    <sql id="entity_properties">
+		#{persId},
+		#{operateTime},
+		#{persName},
+		#{mobile},
+		#{lon},
+		#{lat},
+		#{address},
+		#{orgId},
+		#{groupId},
+		#{adCode}
+	</sql>
+
+    <insert id="insert" parameterType="com.zph.zg.model.Tracked">
+        insert into TRACK( <include refid="table_columns" /> )
+        values ( <include refid="entity_properties" /> )
+    </insert>
+
+    <select id="getBy" resultMap="trackedMap" parameterType="java.lang.String">
+        select <include refid="table_columns" /> from TRACK  where mobile=#{phone}
+    </select>
+</mapper>

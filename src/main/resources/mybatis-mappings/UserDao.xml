@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zph.zg.dao.UserDao">
+  <resultMap id="userMap" type="com.zph.zg.model.User">
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="psd" jdbcType="VARCHAR" property="psd" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="persId" jdbcType="VARCHAR" property="persid" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="userType" jdbcType="VARCHAR" property="usertype" />
+    <result column="var1" jdbcType="VARCHAR" property="var1" />
+    <result column="var2" jdbcType="VARCHAR" property="var2" />
+  </resultMap>
+
+  <sql id="table_columns">
+		userName,
+		psd,
+		phone,
+		id,
+		persId,
+		status,
+		sex,
+		userType,
+		var1,
+		var2
+    </sql>
+  <select id="findAll" resultMap="userMap" >
+    select <include refid="table_columns" /> from USER
+  </select>
+  <insert id="insert" parameterType="com.zph.zg.model.User">
+    insert into user (userName, psd, phone, 
+      id, persId, status, 
+      sex, userType, var1, 
+      var2)
+    values (#{username,jdbcType=VARCHAR}, #{psd,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{id,jdbcType=INTEGER}, #{persid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{usertype,jdbcType=VARCHAR}, #{var1,jdbcType=VARCHAR}, 
+      #{var2,jdbcType=VARCHAR})
+  </insert>
+
+    <select id="login" resultMap="userMap" parameterType="com.zph.zg.model.User">
+        select <include refid="table_columns" /> from USER  where phone=#{phone}
+    </select>
+</mapper>

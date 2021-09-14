@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zph.zg.dao.MsgDao">
+    <resultMap id="msgMap" type="com.zph.zg.model.Msg">
+        <result column="phoneNum" jdbcType="VARCHAR" property="phoneNum" />
+        <result column="time" jdbcType="VARCHAR" property="time" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="state" jdbcType="VARCHAR" property="state" />
+        <result column="var1" jdbcType="VARCHAR" property="var1" />
+        <result column="var2" jdbcType="VARCHAR" property="var2" />
+    </resultMap>
+    <sql id="table_columns">
+		phoneNum,
+		time,
+		title,
+		content,
+		state,
+		var1,
+		var2
+    </sql>
+
+
+    <sql id="entity_properties">
+		#{phoneNum},
+		#{time},
+		#{title},
+		#{content},
+		#{state},
+		#{var1},
+		#{var2}
+	</sql>
+
+    <insert id="insert" parameterType="com.zph.zg.model.Msg">
+        insert into msg( <include refid="table_columns" /> )
+        values ( <include refid="entity_properties" /> )
+    </insert>
+
+    <select id="getBy" resultMap="msgMap" parameterType="java.lang.String">
+        select <include refid="table_columns" /> from msg  where phoneNum=#{phone}
+    </select>
+</mapper>
