@@ -33,6 +33,6 @@ public class TrackedController extends BaseController {
         for (Tracked item : list) {
             trackedService.insert(item);
         }
-        return buildSuccessResponse(list);
+        return buildSuccessResponse();
     }
 }
