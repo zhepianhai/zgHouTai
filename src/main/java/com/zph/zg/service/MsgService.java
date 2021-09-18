@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface MsgService  extends CrudService<Msg, MsgParam> {
     List<Msg> getBy(String phone);
+    List<Msg> findAll();
 }

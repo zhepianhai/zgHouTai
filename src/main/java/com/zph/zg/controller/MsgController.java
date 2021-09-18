@@ -32,4 +32,10 @@ public class MsgController extends BaseController {
         msgService.insert(msg);
         return buildSuccessResponse(msg);
     }
+    @ApiOperation(value = "列表查询")
+    @RequestMapping(value = "/findAll", method = RequestMethod.POST)
+    public BaseResponse<List<Msg>> list() {
+        List<Msg> list=msgService.findAll();
+        return buildSuccessResponse(list);
+    }
 }

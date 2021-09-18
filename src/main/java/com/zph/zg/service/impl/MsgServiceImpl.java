@@ -26,4 +26,9 @@ public class MsgServiceImpl extends AbstractCrudService<Msg, MsgParam> implement
     public List<Msg> getBy(String phone) {
         return msgDao.getBy(phone);
     }
+
+    @Override
+    public List<Msg> findAll() {
+        return msgDao.findAll();
+    }
 }

@@ -36,7 +36,11 @@
         values ( <include refid="entity_properties" /> )
     </insert>
 
+
     <select id="getBy" resultMap="msgMap" parameterType="java.lang.String">
         select <include refid="table_columns" /> from msg  where phoneNum=#{phone}
+    </select>
+    <select id="findAll" resultMap="msgMap">
+        select <include refid="table_columns" /> from msg
     </select>
 </mapper>

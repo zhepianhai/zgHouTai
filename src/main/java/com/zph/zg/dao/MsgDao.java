@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface MsgDao extends CrudDao<Msg, MsgParam> {
     List<Msg> getBy(String phone);
+    List<Msg> findAll();
 }

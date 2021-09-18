@@ -30,6 +30,7 @@ public abstract class BaseController {
 
         BaseResponse<T> response = new BaseResponse<T>();
         response.setSuccess(true);
+        response.setCode(0);
         if (data == null) {
             Map<String, Object> params = new HashMap<>(0);
             response.setData((T) params);
