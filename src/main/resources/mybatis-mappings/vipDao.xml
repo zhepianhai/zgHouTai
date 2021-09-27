@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zph.zg.dao.VipDao">
+    <resultMap id="vipMap" type="com.zph.zg.model.Vip">
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="type" jdbcType="VARCHAR" property="type" />
+        <result column="num" jdbcType="VARCHAR" property="num" />
+        <result column="state" jdbcType="VARCHAR" property="state" />
+        <result column="var1" jdbcType="VARCHAR" property="var1" />
+        <result column="var2" jdbcType="VARCHAR" property="var2" />
+        <result column="id" jdbcType="INTEGER" property="id" />
+    </resultMap>
+
+    <sql id="table_columns">
+		phone,
+		type,
+		num,
+		state,
+		var1,
+		var2,
+		id
+    </sql>
+
+
+    <sql id="entity_properties">
+		#{phone},
+		#{type},
+		#{num},
+		#{state},
+		#{var1},
+		#{var2},
+		#{id}
+	</sql>
+    <select id="getBy" resultMap="vipMap" parameterType="java.lang.String">
+        select <include refid="table_columns" /> from vip  where phone=#{phone}
+    </select>
+
+
+    <insert id="insert" parameterType="com.zph.zg.model.Vip">
+        insert into vip( <include refid="table_columns" /> )
+        values ( <include refid="entity_properties" /> )
+    </insert>
+
+    <insert id="update" parameterType="com.zph.zg.model.Vip">
+        update vip
+       <set>
+           <if test="phone != null">phone=#{phone},</if>
+           <if test="type != null">type=#{type},</if>
+           <if test="state != null">state=#{state},</if>
+           <if test="num != null">num=#{num},</if>
+           <if test="var1 != null">var1=#{var1},</if>
+           <if test="var2 != null">var2=#{var2},</if>
+       </set>
+         <where>id=#{id}</where>
+    </insert>
+</mapper>
